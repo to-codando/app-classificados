@@ -10,7 +10,7 @@ specifiers:
   standard: ^17.0.0
 
 dependencies:
-  lemejs: 6.1.4
+  lemejs: 6.1.5
 
 devDependencies:
   cross-env: 7.0.3
@@ -1305,8 +1305,8 @@ packages:
       object.assign: 4.1.2
     dev: true
 
-  /lemejs/6.1.4:
-    resolution: {integrity: sha512-Frq54W8k2Ppo7Fx8p+/scCuEiGJ3rYpYrnH8l+0ScqryepqCd4nFnaTjxox4K4ysGZvnep8AtD6R0h57hz0rZw==}
+  /lemejs/6.1.5:
+    resolution: {integrity: sha512-qF9637ikzkyIq4IRcrARk8lSXSCx0I0vUiq0hrtfQ3cMHPyV8uqjGZ2JOzSYT0dqkf0rQt3dkZhY83dTiYXUMQ==}
     dev: false
 
   /levn/0.4.1:

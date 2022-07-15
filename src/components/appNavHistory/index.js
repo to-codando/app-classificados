@@ -1,16 +1,5 @@
 import { observerFactory, routerParamsFactory } from 'lemejs'
 
-const capitalize = (text) => {
-  if (!text) return ''
-  const sentence = text.replace(/\-/g, ' ')
-  const textList = sentence.split(' ')
-  return textList.map(str => str.charAt(0).toUpperCase() + str.slice(1)).join(' ')
-}
-
-const renderIf = (condition, htmlTemplate) => {
-  if (condition) return htmlTemplate
-}
-
 const template = ({ state, html }) => html`
 	<div class="ctx-nav-icon">
 		<span class="material-symbols-rounded"> dataset_linked </span>
@@ -19,11 +8,11 @@ const template = ({ state, html }) => html`
 		<li>
 			<a href="#/" class="ctx-link">
 				Resumo 
-				${renderIf(state.routeParams.hash, html`<span class="material-symbols-rounded ctx-icon"> chevron_right </span>`)}
+				<span class="material-symbols-rounded ctx-icon"> chevron_right </span>
 			</a>
 		</li>
 		<li>
-			${renderIf(state.routeParams.hash, html`<span class="ctx-text">${capitalize(state.routeParams.hash)}</span>`)}
+			<span class="ctx-text">${state.routeParams.label}<span>
 		</li>
 	</ul>
 `
@@ -33,7 +22,8 @@ export const appNavHistory = () => {
 
   const state = observerFactory({
     routeParams: {
-      hash: routeParams.getFirst()
+      hash: routeParams.getFirst(),
+      label: ''
     }
   })
 
@@ -42,12 +32,17 @@ export const appNavHistory = () => {
   })
 
   const beforeOnInit = () => {
+    const params = routeParams.getAll()
+    const routeConfig = routeParams.getConfig()
+
+    setHash({ params, routeConfig })
     routeParams.onChange(setHash)
   }
 
-  const setHash = ({ params }) => {
+  const setHash = ({ params, routeConfig }) => {
+    const { label } = routeConfig
     const hash = params.shift()
-    state.set({ routeParams: { hash } })
+    state.set({ routeParams: { hash, label } })
   }
 
   return { template, styles, state, hooks }

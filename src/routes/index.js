@@ -8,23 +8,29 @@ import { appUnityRegistration } from '../components/appUnityRegistration'
 const router = routerFactory()
 
 router.add({
+  label: 'Início',
   hash: '/',
   validator: /^#\/$/,
   component: appDashboard,
   isInitial: true
 })
+
 router.add({
+  label: 'Perfil',
   hash: '/profile',
   validator: /^#\/profile$/,
   component: appProfile
 })
+
 router.add({
-  hash: '/unity-registration',
-  validator: /^#\/unity-registration$/,
+  label: 'Anúncios',
+  hash: '/campaign',
+  validator: /^#\/campaign$/,
   component: appUnityRegistration
 })
 
 router.add({
+  label: 'Página desconhecida',
   hash: 'not-found',
   validator: /^#\/not-found$/,
   component: appNotFound,
